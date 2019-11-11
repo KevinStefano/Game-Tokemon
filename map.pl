@@ -1,3 +1,4 @@
+:- dynamic(currLoc/2).
 /* MAP */
 
 /* Cetak Map */
@@ -25,13 +26,12 @@ isNotBorder(X,Y) :- (X>0), (Y>0), (X<11), (Y<11).
 
 /* Lokasi */
 currLoc(1,1).
-dynamic(currLoc).
 
 /* Perpindahan */
-n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), retract(currLoc(X,Y)), assert(currLoc(X,Y1)), write("You've moved to north 1 tile."), nl.
-s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), retract(currLoc(X,Y)), assert(currLoc(X,Y1)), write("You've moved to south 1 tile."), nl.
-w :- currLoc(X,Y), X1 is X-1, (X1 > 0), retract(currLoc(X,Y)), assert(currLoc(X1,Y)), write("You've moved to west 1 tile."), nl.
-n :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), assert(currLoc(X1,Y)), write("You've moved to east 1 tile."), nl.
+n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), retract(currLoc(X,Y)), asserta(currLoc(X,Y1)), write('You have moved to north 1 tile.'), nl.
+s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), retract(currLoc(X,Y)), asserta(currLoc(X,Y1)), write('You have moved to south 1 tile.'), nl.
+w :- currLoc(X,Y), X1 is X-1, (X1 > 0), retract(currLoc(X,Y)), asserta(currLoc(X1,Y)), write('You have moved to west 1 tile.'), nl.
+n :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), asserta(currLoc(X1,Y)), write('You have moved to east 1 tile.'), nl.
 
 /* Komando untuk Bagian Map */
 map :- printMap(0,0).
