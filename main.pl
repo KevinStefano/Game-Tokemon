@@ -16,13 +16,13 @@ start :-
         write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,
         write('> '),
         read(X),nl,
-        execute(X),!.
+        run(X),!.
 /*game looping*/
 
 /*implementation of input X*/
-execute(help) :- help,nl,!.
-execute(map)  :- map,nl,!.
-execute(status) :- status,nl,!.
+run(help) :- help,nl,!.
+run(map)  :- map,nl,!.
+run(status) :- status,nl,!.
 
 story:-
         write('\nGotta catch em all!\n'),nl,
