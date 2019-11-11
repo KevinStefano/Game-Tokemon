@@ -33,3 +33,14 @@ alive(charmander).
 alive(isobu).
 alive(shukaku).
 alive(matatabi).
+alive(cinamon).
+alive(gyuki).
+alive(kochenk).
+alive(gyuku).
+alive(chomei).
+alive(songoku).
+alive(fanomon).
+alive(hanselmon).
+alive(zaimon).
+alive(ziadmon).
+alive(kokou).
