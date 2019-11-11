@@ -1,7 +1,7 @@
 :- dynamic(tokemon/5).
 :- use_module(library(lists)).
 /*Facts of tokemon*/
-/*tokemon(name of tokemon, type, health points, BasicAttackDamage, SpecialAttackDamage!!!!!).*/
+/*tokemon(name of tokemon, type, health points, BasicAttackDamage, SpecialAttackDamage, NamaSpecialAttack!!!!!).*/
 tokemon(icanmon,water,999).
 tokemon(sangemon,grass,13517101).
 tokemon(kurama,fire,600).
