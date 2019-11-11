@@ -3,6 +3,7 @@
 /*Library game*/
 :-[tokemon].
 :-[tokemon_evolution].
+:-[map].
 
 
 /*Game begin if user types start */
@@ -22,7 +23,8 @@ start :-
         write('7. status. -- show your status\n'),
         write('8. save(Filename). -- save your game\n'),
         write('9. load(Filename). -- load previously saved game\n'),
-        write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),!.
+        write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,
+        map,!.
 help :-
         write('Available commands:\n'),
         write('1. start. -- start the game!\n'),
