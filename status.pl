@@ -1,6 +1,6 @@
 /*status*/
 status :-
-	\+gameMain(_)
+	\+gameMain(_),
 	write('Gunakan 'start' untuk memulai)
 status :- 
 	write('Jumlah Pokemon : '), lengthStorage(Length), write(Length),nl,
