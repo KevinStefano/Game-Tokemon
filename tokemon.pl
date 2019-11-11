@@ -1,5 +1,5 @@
 :- dynamic(tokemon/5).
-
+:- use_module(library(lists)).
 /*Facts of tokemon*/
 /*tokemon(name of tokemon, type, health points).*/
 tokemon(icanmon,water,999).
@@ -46,3 +46,8 @@ alive(hanselmon).
 alive(zaimon).
 alive(ziadmon).
 alive(kokou).
+
+/*Print Player's Tokemon.*/
+
+/*List of our Tokemon*/
+ourTokemon([]):-    fail.
