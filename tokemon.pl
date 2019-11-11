@@ -1,3 +1,5 @@
+:- dynamic(tokemon/5).
+
 /*Facts of tokemon*/
 /*tokemon(name of tokemon, type, health points).*/
 tokemon(icanmon,water,999).
