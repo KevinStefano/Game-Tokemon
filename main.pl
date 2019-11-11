@@ -24,7 +24,16 @@ start :-
         write('8. save(Filename). -- save your game\n'),
         write('9. load(Filename). -- load previously saved game\n'),
         write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,
-        map,!.
+        write('> '),
+        read(X),nl,
+        execute(X),!.
+/*game looping*/
+
+/*implementation of input X*/
+execute(help) :- help,nl,!.
+execute(map)  :- map,nl,!.
+execute(status) :- status,nl,!.
+
 help :-
         write('Available commands:\n'),
         write('1. start. -- start the game!\n'),
