@@ -28,28 +28,25 @@ isNotBorder(X,Y) :- (X>0), (Y>0), (X<11), (Y<11).
 currLoc(1,1).
 
 /* Perpindahan */
-n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), retract(currLoc(X,Y)), isNotGym(X,Y1), isNotFence(X,Y1), asserta(currLoc(X,Y1)), write('You have moved to north 1 tile.'), nl, !.
-n :- currLoc(_,Y), Y1 is Y-1, (Y1 =< 0), write('You have reached the end of the map. You cannot move any further.'), nl, !.
-n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), retract(currLoc(X,Y)), asserta(currLoc(X,Y1)), \+(isNotGym(X,Y1)), write('You have moved to north 1 tile. Now you are in a TokeGym!'), nl, !.
-n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), \+(isNotFence(X,Y1)), write('There is a fence on your north, you cannot go there.'), nl, !.
+n :- currLoc(_,Y), Y1 is Y-1, (Y1 =< 0), !, write('You have reached the end of the map. You cannot move any further.'), nl, !.
+n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), \+isNotFence(X,Y1), !, write('There is a fence on your north, you cannot go there.'), nl, !.
+n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), retract(currLoc(X,Y)), isNotFence(X,Y1), asserta(currLoc(X,Y1)), write('You have moved to north 1 tile.'), nl, defLoc(X,Y1), !.
 
-s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), retract(currLoc(X,Y)), isNotGym(X,Y1), isNotFence(X,Y1), asserta(currLoc(X,Y1)), write('You have moved to south 1 tile.'), nl, !.
-s :- currLoc(_,Y), Y1 is Y+1, (Y1 >= 11), write('You have reached the end of the map. You cannot move any further.'), nl, !.
-s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), retract(currLoc(X,Y)), \+(isNotGym(X,Y1)), asserta(currLoc(X,Y1)), write('You have moved to south 1 tile. Now you are in a TokeGym!'), nl,!.
-s :- currLoc(X,Y), Y1 is Y-1, (Y1 < 11), \+(isNotFence(X,Y1)), write('There is a fence on your south, you cannot go there.'), nl, !.
+s :- currLoc(_,Y), Y1 is Y+1, (Y1 >= 11), !, write('You have reached the end of the map. You cannot move any further.'), nl, !.
+s :- currLoc(X,Y), Y1 is Y-1, (Y1 < 11), \+isNotFence(X,Y1), !, write('There is a fence on your south, you cannot go there.'), nl, !.
+s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), retract(currLoc(X,Y)), isNotFence(X,Y1), asserta(currLoc(X,Y1)), write('You have moved to south 1 tile.'), nl, defLoc(X,Y1), !.
 
-w :- currLoc(X,Y), X1 is X-1, (X1 > 0), retract(currLoc(X,Y)), isNotGym(X1,Y), isNotFence(X1,Y), asserta(currLoc(X1,Y)), write('You have moved to west 1 tile.'), nl, !.
-w :- currLoc(X,_), X1 is X-1, (X1 =< 0), write('You have reached the end of the map. You cannot move any further.'), nl, !.
-w :- currLoc(X,Y), X1 is X-1, (X1 > 0), retract(currLoc(X,Y)), \+(isNotGym(X1,Y)), asserta(currLoc(X1,Y)), write('You have moved to west 1 tile. Now you are in a TokeGym!'), nl, !.
-w :- currLoc(X,Y), X1 is X-1, (X1 > 0), \+(isNotFence(X1,Y)), write('There is a fence on your west, you cannot go any further.'), nl, !.
+w :- currLoc(X,_), X1 is X-1, (X1 =< 0), !, write('You have reached the end of the map. You cannot move any further.'), nl, !.
+w :- currLoc(X,Y), X1 is X-1, (X1 > 0), \+isNotFence(X1,Y), !, write('There is a fence on your west, you cannot go any further.'), nl, !.
+w :- currLoc(X,Y), X1 is X-1, (X1 > 0), retract(currLoc(X,Y)), isNotFence(X1,Y), asserta(currLoc(X1,Y)), write('You have moved to west 1 tile.'), nl, defLoc(X1,Y), !.
 
-e :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), isNotGym(X1,Y), isNotFence(X1,Y), asserta(currLoc(X1,Y)), write('You have moved to east 1 tile.'), nl, !.
-e :- currLoc(X,_), X1 is X+1, (X1 >= 11), write('You have reached the end of the map. You cannot move any further.'), nl, !.
-e :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), \+(isNotGym(X1,Y)), asserta(currLoc(X1,Y)), write('You have moved to east 1 tile. Now you are in a TokeGym!'), nl, !.
-e :- currLoc(X,Y), X1 is X+1, (X1 < 11), \+(isNotFence(X1,Y)), write('There is a fence on your east, you cannot go any further.'), nl, !.
+e :- currLoc(X,_), X1 is X+1, (X1 >= 11), !, write('You have reached the end of the map. You cannot move any further.'), nl, !.
+e :- currLoc(X,Y), X1 is X+1, (X1 < 11), \+isNotFence(X1,Y), !, write('There is a fence on your east, you cannot go any further.'), nl, !.
+e :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), isNotFence(X1,Y), asserta(currLoc(X1,Y)), write('You have moved to east 1 tile.'), nl, defLoc(X1,Y), !.
 
-greetTokeGym :- write("Welcome to TokeGym!"), nl.
-pickAnotherD :- write("Why don't you take another direction?"), nl.
+/* Desrkipsi Lokasi */
+defLoc(X,Y) :- currLoc(X,Y), \+isNotGym(X,Y), !, write('You are in the TokeGym now!'), nl, !.
+defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), write('You are in a barren land now'), nl, !.
 
 /* Komando untuk Bagian Map */
 map :- printMap(0,0).
