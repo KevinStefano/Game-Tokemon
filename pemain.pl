@@ -10,7 +10,7 @@ inisialisasipemain :-
 	/*inisialisasi Tokemon */
 	asserta(pemain(X,Y)),
 	asserta(tokemonNow(bulbasaur,580)),
-	asserta(maxStorage(8)),
+	asserta(maxStorage(6)),
 
 	/*Insialisasi Peta*/
 	xPeta(Xpet),
@@ -24,6 +24,8 @@ lengthStorage(Length) :-
 	findall(B,storage(B,_),L),
 	length(L,Length).
 
+/*Pick yang dari musuh ke storge)*/
+	
 /*Memasukkan ke Storage*/	
 /*Jika penuh*/
 addStorage(_,_) :-
