@@ -11,8 +11,9 @@
 start :-
         write('==========>>>>>TOKEMON<<<<<==========\n===============PROLOG===============\n'),
         
-inisialisasiTokemonliar,
-inisialisasitokemons,
+        loop_entry_tokbiasa(4),
+        
+	loop_entry_toklegend(1),
         story, 
         help,
         write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,

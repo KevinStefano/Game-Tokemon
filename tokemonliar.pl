@@ -10,9 +10,9 @@ take([_|T],Count,Output) :-
     CountNew is (Count-1),
     take(T,CountNew,Output), !.
 
+
 /*Masukkin tokemon referensi ke tokemon_special dan tokemon_liar*/
-loop_entry_toklegend(N) :-
-	N<1,N>3,!.
+loop_entry_toklegend(4).
 loop_entry_toklegend(N) :-
 	N>=1, N=<3,
 	tokemon(N,Tokemon,_,Health,_,_,_,_),
@@ -20,8 +20,7 @@ loop_entry_toklegend(N) :-
 	N0 is N+1,
 	loop_entry_toklegend(N0),!.
 
-loop_entry_tokbiasa(N) :-
-	N<4,N>=22,!.
+loop_entry_tokbiasa(22).
 loop_entry_tokbiasa(N) :-
 	N>=4, N<22,
 	tokemon(N,Tokemon,_,Health,_,_,_,_),
@@ -32,11 +31,11 @@ loop_entry_tokbiasa(N) :-
 
 /*Inisialisasi tokemon liar*/
 inisialisasiTokemonLiar :-
-	loop_entry_tokbiasa(4),!.
+	loop_entry_tokbiasa(4).
 
 /*Inisialisasi tokemon SPESIAL*/
 inisialisasitokemons :-
-	loop_entry_toklegend(1),!.
+	loop_entry_toklegend(1).
 
 /*Player akan bertemu dengan tokemon liar atau spesial jika kemungkinan RNG suda tepat*/
 
