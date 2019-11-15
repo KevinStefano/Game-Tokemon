@@ -1,7 +1,6 @@
 :- dynamic(tokemon/5).
 :- use_module(library(lists)).
 /*Facts of tokemon*/
-<<<<<<< HEAD
 /*tokemon(name of tokemon, type, health points,damagenormal,damagespecial,name of special attack).*/
 tokemon(icanmon,water,999,10,20,water_bomb).
 tokemon(sangemon,grass,13517101,15,30,punch).
@@ -24,7 +23,6 @@ tokemon(hanselmon,leaf,760,120,170,basquias).
 tokemon(zaimon,fire,740,50,100,fire_chastefol).
 tokemon(ziadmon,water,820,10,550,shinra_tensei).
 tokemon(kokou,leaf,710,120,170,leaf_blade).
-=======
 /*tokemon(name of tokemon, type, health points, BasicAttackDamage, SpecialAttackDamage, NamaSpecialAttack!!!!!).*/
 tokemon(icanmon,water,999).
 tokemon(sangemon,grass,13517101).
@@ -46,7 +44,6 @@ tokemon(hanselmon,leaf,760).
 tokemon(zaimon,fire,740).
 tokemon(ziadmon,water,720).
 tokemon(kokou,leaf,710).
->>>>>>> 28d444e99af5497fa7a4259ffd053eaf4a08b3de
 
 /*Status of tokemon in battle. 
     alive or Fainted.*/
