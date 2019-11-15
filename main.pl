@@ -1,16 +1,18 @@
 /*  nama file   : main.pl
     TOKEMON GAME*/
 /*Library game*/
-:-[tokemon].
-:-[tokemon_evolution].
-:-[map].
-:- use_module(library(lists)).
+:-include('tokemon.pl').
+:-include('tokemon_evolution').
+:-include('map.pl').
 
 
 /*Game begin if user types start */
 
 start :-
         write('==========>>>>>TOKEMON<<<<<==========\n===============PROLOG===============\n'),
+        
+inisialisasiTokemonliar,
+inisialisasitokemons,
         story, 
         help,
         write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,
@@ -47,6 +49,7 @@ help :-
         write('9. load(Filename). -- load previously saved game\n'),!.
 status :-
         write('Your Tokemon:\n'),
-        /*function liat tokemon disini*/
+        /*function liat tokemon disi*/
         write('Your enemy:\n'),!.
         /*liat wild tokemon*/
+
