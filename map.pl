@@ -60,4 +60,7 @@ rngTokeRun :- random(1,11,X), (X =< 6).
 rngLegRun :- random(1,11,X), (X =< 2).
 
 /* Others */
-fightOrRun :- write('Fight or Run?').
+fightOrRun :- write('Fight or Run?'), rngToke, \+rngLeg, rngTokeRun, !, write('You have successfully escaped from the Normal TokeMon!'), nl, !.
+fightOrRun :- write('Fight or Run?'), rngToke, \+rngLeg, \+rngTokeRun, !, write('You failed to escape from the Normal TokeMon!'), nl, !.
+fightOrRun :- write('Fight or Run?'), rngToke, rngLeg, rngLegRun, !, write('You have successfully escaped from the Legendary TokeMon!'), nl, !.
+fightOrRun :- write('Fight or Run?'), rngToke, rngLeg, \+rngLegRun, !, write('You failed to escape from the Legendary TokeMon!'), nl, !.
