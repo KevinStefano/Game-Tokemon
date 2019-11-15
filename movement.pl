@@ -1,4 +1,6 @@
+:-[map].
 /* Movement */
+
 w :-
 	\+gameMain(_),
 	write('Command ini hanya bisa dipakai setelah game dimulai.'), nl,
