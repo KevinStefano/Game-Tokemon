@@ -39,4 +39,96 @@ start :-
 	!.
 
 help :-
+	write('Available commands:'),nl,
+	write('start. -- start the game!'),nl,
+	write('help. -- show available commands'),nl,
+	write('quit. -- quit the game'),nl,
+	write('n. s. e. w. -- move'),nl,
+	write('map. -- look at the map'),nl,
+	write('heal -- cure Tokemon in inventory if in gym center'),nl,
+	write('status. -- show your status'),nl,
+	write('save(Filename). -- save your game'),nl,
+	write('load(Filename). -- load previously saved game'),nl,
+	write(''),nl,!.
+
+load(_) :-
+	gameMain(_),
+	write('Kamu tak bisa loads setelah game dimulai'), nl,!.
+
+save(_) :-
+
+map :-
+	\+gameMain(_),
+	write('Command ini hanya bisa digunakan setelah game dimulai'),nl,!.
+map :-
+	tinggiPeta(T),
+	lebarPeta(L),
+	Xmin is 0,
+	Xmax is L+1,
+	Ymin is 0,
+	Ymax is T+1,
+	forall(between(Ymin, Ymax, J), (
+		forall(between(Xmin, Xmax, I), (
+			printMap(I,J)
+		)),nl
+	)),
+	write('Legends:'), nl,
+	write('- X = Pagar'),nl,
+	write('- P = Player'),nl,
+	write('- G = Gym'),nl,
+	!.
+
+status :-
+	\+gameMain(_),
+	write('Command ini hanya bisa digunakan setelah game dimulai'),nl,!.
+status :-
+	write('Your Tokemon : '), nl,
+	inventory(_,_,_,_,_)->(
+		forall(inventory(tokemon, type, hp, nd, sd),
+			(
+				write(' -'),write(tokemon), nl,
+				write('Health : '), write(hp),nl,
+				write('Type : '), write(type),nl,
+				write('Normal Attack Damage : '), write(nd),nl,
+				write('Special Attack Damage : '), write(sd),nl,nl
+			))
+		),
+	write('Your Enemy : '), nl,
+
+		.!
+
+fight :-
+	\+gameMain(_),
+	write('Command ini hanya bisa digunakan setelah game dimulai'),nl,!.
+fight :-
+	\+gameMain(_),
+	write('Anda tidak bertemu pokemon di wilayah ini'), nl,!.
+fight :-
+	write('Silahkan pilih tokemon yang akan digunakan : '),
+		inventory(_,_,_,_,_)->(
+		forall(inventory(tokemon, type, hp, nd, sd),
+			(
+				write('['),write(tokemon), write(']')
+			))
+		),
+	
+
+pick(_) :-
+	\+gameMain(_),
+	write('Command ini hanya bisa digunakan setelah game dimulai'),nl,!.
+
+pick(tokemon) :-
+	findall(Attribut, inventory(tokemon, type, hp, nd, sd), ListToke),
+	length(ListToke, Panjang),
+	Panjang > 1 ->
+	(
+		inventory(tokemon, type, hp, nd, sd)->(
+			(isTokemon(tokemon, hp, nd, ))
+			)
+		)
+
+
+
+
+	
 
