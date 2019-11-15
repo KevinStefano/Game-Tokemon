@@ -48,7 +48,7 @@ e :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), isNotFence(X1,Y)
 defLoc(X,Y) :- currLoc(X,Y), \+isNotGym(X,Y), !, write('You are in the TokeGym now!'), nl, !.
 defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), rngToke, rngLeg, !, write('You have encountered a Legendary TokeMon!'), nl, !.
 defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), rngToke, \+rngLeg, !, write('You have encountered a Normal TokeMon!'), nl, !.
-defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), \+rngToke, \+rngLeg, write('You are in a barren land now'), nl, !.
+defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), write('You are in a barren land now'), nl, !.
 
 /* Komando untuk Bagian Map */
 map :- printMap(0,0).
@@ -58,3 +58,6 @@ rngToke :- random(1,11,X), (X =< 4).
 rngLeg :- random(1,11,X), (X =:= 1).
 rngTokeRun :- random(1,11,X), (X =< 6).
 rngLegRun :- random(1,11,X), (X =< 2).
+
+/* Others */
+fightOrRun :- write('Fight or Run?').
