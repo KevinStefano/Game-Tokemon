@@ -75,7 +75,7 @@ sembuhkanTokemon(Tokemon,Health):-
 	addStorage(Tokemon,HealtMax),
 	write('Yay.. '),write(Tokemon),write('darahnya bertambah menjadi full'),nl,!.
 /*Jika helath full*/
-sembuhkanTokemon(Tokemon,Health) :=
+sembuhkanTokemon(Tokemon,Health) :-
 	tokemon(Tokemon,_,HealtMax,_,_,_),
 	Health==HealtMax,
 	write(Tokemon),write('darahnya sudah Full, tidak bisa ditambah lagi :( '),nl,!.
@@ -93,7 +93,7 @@ quit :-
 	write('Terima kasih sudah bermain...'),nl,!.
 
 
-fail :-
+kalah :-
 	write('Yah Tokemonmu sudah habis'),nl,
 	write('Kamu tidak bisa menyerang lagi'),nl,
 	write('Maaff kamu kalah'),
