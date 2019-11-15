@@ -33,7 +33,7 @@ n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), \+isNotFence(X,Y1), !, write('There is a
 n :- currLoc(X,Y), Y1 is Y-1, (Y1 > 0), retract(currLoc(X,Y)), isNotFence(X,Y1), asserta(currLoc(X,Y1)), write('You have moved to north 1 tile.'), nl, defLoc(X,Y1), !.
 
 s :- currLoc(_,Y), Y1 is Y+1, (Y1 >= 11), !, write('You have reached the end of the map. You cannot move any further.'), nl, !.
-s :- currLoc(X,Y), Y1 is Y-1, (Y1 < 11), \+isNotFence(X,Y1), !, write('There is a fence on your south, you cannot go there.'), nl, !.
+s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), \+isNotFence(X,Y1), !, write('There is a fence on your south, you cannot go there.'), nl, !.
 s :- currLoc(X,Y), Y1 is Y+1, (Y1 < 11), retract(currLoc(X,Y)), isNotFence(X,Y1), asserta(currLoc(X,Y1)), write('You have moved to south 1 tile.'), nl, defLoc(X,Y1), !.
 
 w :- currLoc(X,_), X1 is X-1, (X1 =< 0), !, write('You have reached the end of the map. You cannot move any further.'), nl, !.
@@ -46,7 +46,21 @@ e :- currLoc(X,Y), X1 is X+1, (X1 < 11), retract(currLoc(X,Y)), isNotFence(X1,Y)
 
 /* Desrkipsi Lokasi */
 defLoc(X,Y) :- currLoc(X,Y), \+isNotGym(X,Y), !, write('You are in the TokeGym now!'), nl, !.
+defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), rngToke, rngLeg, !, write('You have encountered a Legendary TokeMon!'), nl, !.
+defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), rngToke, \+rngLeg, !, write('You have encountered a Normal TokeMon!'), nl, !.
 defLoc(X,Y) :- currLoc(X,Y), isNotGym(X,Y), write('You are in a barren land now'), nl, !.
 
 /* Komando untuk Bagian Map */
 map :- printMap(0,0).
+
+/* Probabilitas Tokemon */
+rngToke :- random(1,11,X), (X =< 4).
+rngLeg :- random(1,11,X), (X =:= 1).
+rngTokeRun :- random(1,11,X), (X =< 6).
+rngLegRun :- random(1,11,X), (X =< 2).
+
+/* Others */
+fightOrRun :- write('Fight or Run?'), rngToke, \+rngLeg, rngTokeRun, !, write('You have successfully escaped from the Normal TokeMon!'), nl, !.
+fightOrRun :- write('Fight or Run?'), rngToke, \+rngLeg, \+rngTokeRun, !, write('You failed to escape from the Normal TokeMon!'), nl, !.
+fightOrRun :- write('Fight or Run?'), rngToke, rngLeg, rngLegRun, !, write('You have successfully escaped from the Legendary TokeMon!'), nl, !.
+fightOrRun :- write('Fight or Run?'), rngToke, rngLeg, \+rngLegRun, !, write('You failed to escape from the Legendary TokeMon!'), nl, !.
