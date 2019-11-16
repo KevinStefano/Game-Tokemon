@@ -93,7 +93,7 @@ quit :-
 	write('Terima kasih sudah bermain...'),nl,!.
 
 
-fail :-
+kalah :-
 	write('Yah Tokemonmu sudah habis'),nl,
 	write('Kamu tidak bisa menyerang lagi'),nl,
 	write('Maaff kamu kalah'),
