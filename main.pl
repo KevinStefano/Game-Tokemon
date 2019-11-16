@@ -11,19 +11,35 @@
 /*Game begin if user types start */
 
 start :-
-        write('==========>>>>>TOKEMON<<<<<==========\n===============PROLOG===============\n'),
+        write('==========>>>>>TOKEMON<<<<<==========\n'),
+        write('===============PROLOG===============\n'),
         story, 
         help,
-        write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,
-        write('> '),
-        read(X),nl,
-        run(X),!.
+        legends,
+        loop,
+        input,!.
 /*game looping*/
+
+input:- 
+        write('>> '),
+        read(X),nl,
+        run(X),
+        input,!.
 
 /*implementation of input X*/
 run(help) :- help,nl,!.
 run(map)  :- map,nl,!.
 run(status) :- status,nl,!.
+run(quit) :- quit,!.
+run(s):- s,nl,!.
+run(e):- e,nl,!.
+run(w):- w,nl,!.
+run(n) :- n,nl,!.
+run(_):- write('Wrong command!'),nl,!.
+
+legends:- write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl.
+
+loop:- true.
 
 story:-
         write('\nGotta catch em all!\n'),nl,
@@ -47,8 +63,13 @@ help :-
         write('8. save(Filename). -- save your game\n'),
         write('9. load(Filename). -- load previously saved game\n'),!.
 
-quit:- write('Aril: Congratulation!!! You have helped me in defeating or capturing'),nl,
-        write('the 2 Legendary Tokemons. As promised, I won’t kill you and you are free!').
+quit:-  write('Aril: Congratulation!!! You have helped me in defeating or capturing'),nl,
+        write('the 2 Legendary Tokemons. As promised, I won''t kill you and you are free!'),nl,
+        write('XXXXXXXXXXXXXXXXXXXXXX[[THE END]]XXXXXXXXXXXXXXXXXXXXXX'),nl,nl,
+        \+loop.
 
-quit:- write('Aril: Ho ho ho. You have failed to complete the missions.'),nl, 
-        write('As for now,meet your fate and disappear from this world!').
+quit:-  \+win(_),
+        write('Aril: Ho ho ho. You have failed to complete the missions.'),nl, 
+        write('As for now,meet your fate and disappear from this world!'),nl,
+        write('XXXXXXXXXXXXXXXXXXXXXX[[THE END]]XXXXXXXXXXXXXXXXXXXXXX'),nl,nl,
+        \+loop.
