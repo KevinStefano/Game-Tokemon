@@ -13,6 +13,13 @@
 start :-
         write('==========>>>>>TOKEMON<<<<<==========\n'),
         write('===============PROLOG===============\n'),
+        write('(_ _)( _ )( )/ )( ___)( \'/ )( _ )( \'( )'),nl,
+        write(' )( )(_)( ) ( )__) ) ( )(_)( ) ('),nl,
+        write('(__) (_____)(_)\'_)(____)(_/\'/\'_)(_____)(_)\'_)'),nl,
+        write('____ ____ _____ _ __ _____ ___'),nl,
+        write('( _ \'( _ \'( _ ) ( ) ( ) ( _ )/ __)'),nl,
+        write(')___/ ) / )(_)( /_\'/ )(__ )(_)(( (_-.'),nl,
+        write('(__) (_)\'_)(_____) (__/\' (____)(_____)\'___/'),nl, 
         story, 
         help,
         legends,
@@ -23,19 +30,20 @@ start :-
 input:- 
         write('>> '),
         read(X),nl,
-        run(X),
+        run(X),nl,
         input,!.
 
 /*implementation of input X*/
 run(help) :- help,nl,!.
 run(map)  :- map,nl,!.
-run(status) :- status,nl,!.
+/*run(status) :- status,nl,!. masih salah*/
 run(quit) :- quit,!.
 run(s):- s,nl,!.
 run(e):- e,nl,!.
 run(w):- w,nl,!.
 run(n) :- n,nl,!.
-run(_):- write('Wrong command!'),nl,!.
+run(start):-write('Kamu sudah berada pada game.'),nl,!.
+run(_):- write('Instruksi salah!.'),nl,help,nl,!.
 
 legends:- write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl.
 
