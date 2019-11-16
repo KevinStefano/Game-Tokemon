@@ -10,23 +10,35 @@
 
 start :-
         write('==========>>>>>TOKEMON<<<<<==========\n===============PROLOG===============\n'),
-        
-        loop_entry_tokbiasa(4),
-        
-	loop_entry_toklegend(1),
         story, 
         help,
-        write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl,
-        write('> '),
-        read(X),nl,
-        run(X),!.
+        legends,
+        loop,
+        input,!.
 /*game looping*/
+
+input:-
+        write('>> '),
+        read(X),nl,
+        run(X),nl,
+        input,!.
+
+loop:-true.
 
 /*implementation of input X*/
 run(help) :- help,nl,!.
 run(map)  :- map,nl,!.
-run(status) :- status,nl,!.
+run(quit) :- quit,!.
+run(s):- s,nl,!.
+run(e):- e,nl,!.
+run(w):- w,nl,!.
+run(n) :- n,nl,!.
+run(start):-write('Kamu sudah berada pada game.'),nl,!.
 
+
+legends:- write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl.
+
+loop:- true.
 story:-
         write('\nGotta catch em all!\n'),nl,
         write('Hello there! Welcome to the world of Tokemon! My name is Aril!\n'),

@@ -81,16 +81,19 @@ sembuhkanTokemon(Tokemon,Health) :-
 	write(Tokemon),write('darahnya sudah Full, tidak bisa ditambah lagi :( '),nl,!.
 
 /*Keluar program*/
+
 quit :-
 	\+gameMain(_),
-	write('Kamu belom memulai game'),nl,!.
+	write('Kamu belom memulai game'),nl,
+	\+loop.
 quit :-
 	retract(gameMain(_)),
 	retract(pemain(_,_)),
 	retract(tokemonNow(_,_)),
 	retract(maxStorage(_,_)),
 	retract(storage(_,_)),
-	write('Terima kasih sudah bermain...'),nl,!.
+	write('Terima kasih sudah bermain...'),nl,
+	\+loop.
 
 
 kalah :-
