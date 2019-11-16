@@ -7,10 +7,10 @@ status :-
 	statusTokemon,!.
 
 statusTokemon :-
-	tokemon(Nama, type, hp, BasAT, SpAt, NamSP),
+	tokemon(Nama, Type, Hp, BasAT, SpAt, NamSP),
 	write('Nama Tokemon : '), write(Nama), nl,
-	write('Type : '), write(type), nl,
-	write('Nyawa : '), write(hp), nl,
+	write('Type : '), write(Type), nl,
+	write('Nyawa : '), write(Hp), nl,
 	write('Damage Basic Attack : '),write(BasAT), nl,
 	write('Damage Special Attack : '),write(SpAt), nl,
 	write('Nama Special Attack : '),write(NamSP), nl,!.

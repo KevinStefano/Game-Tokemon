@@ -4,13 +4,19 @@
 :-include('tokemon.pl').
 :-include('tokemon_evolution').
 :-include('map.pl').
-:- dynamic(gameMain/1).	
+:- dynamic(gameMain/1).
+:- dynamic(assertaList/1).	
 
 /*Game begin if user types start */
+
+loop_entry_toklegend(4).
+loop_entry_tokbiasa(22).
 
 start :- 
         asserta(gameMain(1)),
         write('==========>>>>>TOKEMON<<<<<==========\n===============PROLOG===============\n'),
+        inisialisasiTokemonLiar,
+        inisialisasitokemons,
         story, 
         help,
         legends,
@@ -21,24 +27,24 @@ start :-
 input:-
         write('>> '),
         read(X),nl,
-        run(X),nl,
+        execute(X),nl,
         input,!.
 
 loop:-true.
 
 /*implementation of input X*/
-run(help) :- help,nl,!.
-run(map)  :- map,nl,!.
-run(quit) :- quit,!.
-run(s):- s,nl,!.
-run(e):- e,nl,!.
-run(w):- w,nl,!.
-run(n) :- n,nl,!.
-run(load):-write('masukkan nama file:'),nl,read(X),loads(X),!.
-run(start):-write('Kamu sudah berada pada game.'),nl,!.
-run(save):-write('masukkan nama file:'),nl,read(X),save(X),
+execute(help) :- help,nl,!.
+execute(map)  :- map,nl,!.
+execute(quit) :- quit,!.
+execute(s):- s,nl,!.
+execute(e):- e,nl,!.
+execute(w):- w,nl,!.
+execute(n) :- n,nl,!.
+execute(load):-write('masukkan nama file:'),nl,read(X),loads(X),!.
+execute(start):-write('Kamu sudah berada pada game.'),nl,!.
+execute(save):-write('masukkan nama file:'),nl,read(X),save(X),
                 nl,write('Berhasil disimpan!'),nl,!.
-
+execute(tokemon):-tokemon(A,B,C,D,E,F,G),!.
 legends:- write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl.
 
 loop:- true.
@@ -84,7 +90,10 @@ save(_):-
         write('Perintah ini hanya bisa dilakukan ketika kamu berada pada game.'),!.
 save(FileName):-
         tell(FileName),
-
+        writeTokLiar,writeTokSpc,
+        /*tokemon(A,B,C,D,E,F,G),
+        write(tokemon(A,B,C,D,E,F,G)),write('.'),nl,
+        */
         currLoc(X,Y),
         write(currLoc(X,Y)),write('.'),nl,
         gameMain(GM),
@@ -111,7 +120,7 @@ read_file_lines(Stream,[]) :-
     at_end_of_stream(Stream).
 
 read_file_lines(Stream,[X|L]) :-
-    \+ at_end_of_stream(Stream),
+    \+at_end_of_stream(Stream),
     read(Stream,X),
     read_file_lines(Stream,L).
 /*-----------------------------*/
@@ -126,3 +135,15 @@ write_list(NamaFile,L) :-
 	repeat,
 	writeData(S,L),
 	close(S).
+
+writeTokLiar:-
+        \+tokemon_liar(_,_),!.
+writeTokLiar:-
+        forall(tokemon_liar(A,B),(
+        write(tokemon_liar(A,B)),write('.'),nl)),!.
+writeTokSpc:-
+        \+tokemon_spesial(_,_),!.
+
+writeTokSpc:-
+        forall(tokemon_spesial(A,B),(
+        write(tokemon_spesial(A,B)),write('.'),nl)),!.
