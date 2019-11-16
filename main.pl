@@ -41,7 +41,7 @@ execute(s):- s,nl,!.
 execute(e):- e,nl,!.
 execute(w):- w,nl,!.
 execute(n) :- n,nl,!.
-execute(load):-write('masukkan nama file:'),nl,read(X),loads(X),!.
+execute(load):-write('masukkan nama file:'),nl,read(X),loads(X),nl,write('Data berhasil diperbaharui dari file!'),!.
 execute(start):-write('Kamu sudah berada pada game.'),nl,!.
 execute(save):-write('masukkan nama file:'),nl,read(X),save(X),
                 nl,write('Berhasil disimpan!'),nl,!.
@@ -78,15 +78,31 @@ status :-
         write('Your enemy:\n'),!.
         /*liat wild tokemon*/
 
+/* Save dan Load */
+loads(FileName):-
+        file_exists(FileName),
+        retractall(tokemon_liar(_,_)),
+        retractall(tokemon_spesial(_,_)),
+        retractall(tokemon(_,_,_,_,_,_,_,_)),
+        retractall(currLoc(_,_)),
+        retractall(gameMain(_)),
+        open(FileName, read, Dat),
+        process_data(Dat),
+        !,
+        close(Dat).
 
-loads(FileName):-
-        \+file_exists(FileName),
-        write('File tidak ditemukan'),nl,!.
-loads(FileName):-
-        open(FileName, read, Str),
-        read_file_lines(Str,Lines),
-        close(Str),
-        assertaList(Lines),!.
+loads(FileName) :-
+        \+file_exists(FileName), 
+        write('File not found.'), nl.
+
+process_data(Dat) :-
+        at_end_of_stream(Dat).
+
+process_data(Dat) :-
+        \+at_end_of_stream(Dat),
+        read(Dat, S),
+        assertz(S),
+        process_data(Dat).
 
 save(_):-
         \+gameMain(_),
