@@ -4,6 +4,7 @@
 :-include('tokemon.pl').
 :-include('tokemon_evolution').
 :-include('map.pl').
+:-include('gym.pl').
 :- dynamic(gameMain/1).
 :- dynamic(assertaList/1).	
 
@@ -45,16 +46,18 @@ execute(start):-write('Kamu sudah berada pada game.'),nl,!.
 execute(save):-write('masukkan nama file:'),nl,read(X),save(X),
                 nl,write('Berhasil disimpan!'),nl,!.
 execute(tokemon):-tokemon(A,B,C,D,E,F,G),!.
+execute(heal):-heal,nl,!.
+
 legends:- write('\nLegends:\n- X = Pagar\n- P = Player\n- G = Gym\n'),nl.
 
 loop:- true.
 story:-
-        write('\nGotta catch em all!\n'),nl,
+        write('\nGotta catch ''em all!\n'),nl,
         write('Hello there! Welcome to the world of Tokemon! My name is Aril!\n'),
         write('People call me the Tokemon Professor! This world is inhabited by\n'),
         write('creatures called Tokemon! There are hundreds of Tokemon loose in \n'),
         write('Labtek 5! You can catch them all to get stronger, but what I am \n'),
-        write('really interested in are the 2 legendary Tokemons, Icanmon dan \n'),
+        write('really interested in are the 3 legendary Tokemons, Icanmon, Monamon, dan \n'),
         write('Sangemon. If you can defeat or capture all those Tokemons I will\n '),
         write('not kill you.'),nl,nl.
 
@@ -91,9 +94,7 @@ save(_):-
 save(FileName):-
         tell(FileName),
         writeTokLiar,writeTokSpc,
-        /*tokemon(A,B,C,D,E,F,G),
-        write(tokemon(A,B,C,D,E,F,G)),write('.'),nl,
-        */
+        writeTok,
         currLoc(X,Y),
         write(currLoc(X,Y)),write('.'),nl,
         gameMain(GM),
@@ -147,3 +148,7 @@ writeTokSpc:-
 writeTokSpc:-
         forall(tokemon_spesial(A,B),(
         write(tokemon_spesial(A,B)),write('.'),nl)),!.
+
+writeTok:-
+        forall(tokemon(A,B,C,D,E,F,G,H),(
+        write(tokemon(A,B,C,D,E,F,G,H)),write('.'),nl)),!.

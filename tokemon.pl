@@ -1,4 +1,4 @@
-:- dynamic(tokemon/7).
+:- dynamic(tokemon/8).
 /*Facts of tokemon*/
 /*tokemon(name of tokemon, type, health points,damagenormal,damagespecial,name of special attack).*/
 tokemon(1,icanmon,water,999,10,20,water_bomb,l).
