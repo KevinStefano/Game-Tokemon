@@ -33,6 +33,7 @@ run(s):- s,nl,!.
 run(e):- e,nl,!.
 run(w):- w,nl,!.
 run(n) :- n,nl,!.
+run(load):-write('masukkan nama file:'),nl,read(X),loads(X),!.
 run(start):-write('Kamu sudah berada pada game.'),nl,!.
 
 
@@ -66,3 +67,14 @@ status :-
         write('Your enemy:\n'),!.
         /*liat wild tokemon*/
 
+loads(_):-
+        gameMain(_),
+        write('Kamu tidak bisa melakukan perintah ini ketika sedang berada pada game.'),nl,!.
+loads(FileName):-
+        \+file_exists(FileName),
+        write('File tidak ditemukan'),nl,!.
+loads(FileName):-
+        open(FileName, read, Str),
+        read_file_lines(Str,Lines),
+        close(Str),
+        assertaList(Lines),!.
