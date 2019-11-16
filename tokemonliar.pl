@@ -30,8 +30,7 @@ inisialisasiTokemonLiar(Jumlah) :-
 	tokemon_liar(Tok,_).
 	Tok \= Tokemon,
 	asserta(tokemon_liar(Tokemon,Health)), 
-	JumlahN is Jumlah-1, inisialisasiTokemonLiar(JumlahN)
-	!.
+	JumlahN is Jumlah-1, inisialisasiTokemonLiar(JumlahN),!.
 
 /*Inisialisasi tokemon SPESIAL*/
 inisialisasitokemons(0) :- !.

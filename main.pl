@@ -5,7 +5,8 @@
 :-[tokemon_evolution].
 :-[map].
 :- use_module(library(lists)).
-
+:-[status].
+:- use_module(library(semweb/rdf_db)).
 
 /*Game begin if user types start */
 
@@ -45,8 +46,9 @@ help :-
         write('7. status. -- show your status\n'),
         write('8. save(Filename). -- save your game\n'),
         write('9. load(Filename). -- load previously saved game\n'),!.
-status :-
-        write('Your Tokemon:\n'),
-        /*function liat tokemon disini*/
-        write('Your enemy:\n'),!.
-        /*liat wild tokemon*/
+
+quit:- write('Aril: Congratulation!!! You have helped me in defeating or capturing'),nl,
+        write('the 2 Legendary Tokemons. As promised, I won’t kill you and you are free!').
+
+quit:- write('Aril: Ho ho ho. You have failed to complete the missions.'),nl, 
+        write('As for now,meet your fate and disappear from this world!').
