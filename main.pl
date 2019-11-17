@@ -35,6 +35,7 @@ loop:-true.
 
 /*implementation of input X*/
 execute(help) :- help,nl,!.
+execute(heal) :- heal,nl,!.
 execute(map)  :- map,nl,!.
 execute(quit) :- quit,!.
 execute(s):- s,nl,!.
@@ -93,7 +94,7 @@ loads(FileName):-
 
 loads(FileName) :-
         \+file_exists(FileName), 
-        write('File not found.'), nl.
+        write('File tidak ditemukan.'), nl.
 
 process_data(Dat) :-
         at_end_of_stream(Dat).

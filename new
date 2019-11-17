@@ -40,5 +40,5 @@ tokemon(18,hanselmon,leaf,760,120,170,basquias,n).
 tokemon(19,zaimon,fire,740,50,100,fire_chastefol,n).
 tokemon(20,ziadmon,water,820,10,550,shinra_tensei,n).
 tokemon(21,kokou,leaf,710,120,170,leaf_blade,n).
-currLoc(1,1).
+currLoc(8,4).
 gameMain(1).

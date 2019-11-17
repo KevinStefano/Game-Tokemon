@@ -66,19 +66,7 @@ useTokemon(Tokemon,Health) :-
 	write('dengan tokemon'),write(Tokemon),nl,!.
 
 
-/*Menyembuhkan Tokemon*/
-/*Jika Health tidak full */
-sembuhkanTokemon(Tokemon,Health):-
-	delStorage(Tokemon,Health),
-	Health\=HealtMax,
-	tokemon(Tokemon,_,HealtMax,_,_,_),
-	addStorage(Tokemon,HealtMax),
-	write('Yay.. '),write(Tokemon),write('darahnya bertambah menjadi full'),nl,!.
-/*Jika helath full*/
-sembuhkanTokemon(Tokemon,Health) :-
-	tokemon(Tokemon,_,HealtMax,_,_,_),
-	Health==HealtMax,
-	write(Tokemon),write('darahnya sudah Full, tidak bisa ditambah lagi :( '),nl,!.
+
 
 /*Keluar program*/
 
