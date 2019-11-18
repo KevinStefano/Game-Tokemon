@@ -1,6 +1,6 @@
 heal:- 
     currLoc(8,4),
-    sembuhkanTokemon(Tokemon,Health),
+    forall(sembuhkanTokemon(Tokemon,Health),nl),
     write('Semua Tokemon dalam inventory sudah sembuh.'),nl,!.
 
 /*Menyembuhkan Tokemon*/
