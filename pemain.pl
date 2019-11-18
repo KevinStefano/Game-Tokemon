@@ -4,6 +4,9 @@
 :- dynamic(gameMain/1).
 :- dynamic(pemain/2).	
 
+/*Tokemon pertama*/
+storage(bulbasaur,580).
+
 /*Inisialisasi pemain awal */
 inisialisasipemain :-
 	asserta(gameMain(1)),
