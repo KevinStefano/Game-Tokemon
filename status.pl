@@ -1,7 +1,6 @@
 /*status*/
 :- dynamic(listTokLeg/2).
 status :-
-	\+gameMain(_),
 	write('Gunakan start untuk memulai'),nl,!.
 
 
